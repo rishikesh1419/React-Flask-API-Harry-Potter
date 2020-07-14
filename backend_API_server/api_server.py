@@ -4,19 +4,34 @@ from flask import jsonify, request
 from bson.json_util import dumps
 from pymongo import MongoClient
 from query_proc import parse_query
+from random import randint
 
 app = Flask(__name__)
+"""
+Get a random house
+Returns: a random house with its id, name, mascot, head of house, house ghost, founder, school,
+         list of members (id), list of values, list of colors
+"""
+@app.route("/sortinghat", methods=["GET"])
+def sorting_hat() :
+    houses = ['Gryffindor', 'Ravenclaw', 'Slytherin', 'Hufflepuff']
+    try :
+        house = dumps(mydb.houses.find({"name" : houses[randint(0,3)]}))
+        if len(house) > 0 :
+            return house
+        else :
+            return "", 404
+    except :
+        return "", 500
+
 
 """
 Characters request route to get all characters and to search for characters by name
 Valid uses: /characters (Get all characters), /characters?name=search_string (Search for a character)
-Returns character's _id, name, house and species
+Returns: character's _id, name, house and species
 """
 @app.route("/characters", methods=["GET"])
 def get_chars() :
-    """
-    Get all characters with their basic details
-    """
     try :
         params = parse_query(request.query_string)
         if params :
@@ -40,9 +55,6 @@ Returns: _id, name, role, wand, boggart, patronus, house, school, alias, animagu
 """
 @app.route("/characters/<id>", methods=["GET"])
 def get_char_details(id) :
-    """
-    Get all characters with their basic details
-    """
     try :
         characters = dumps(mydb.characters.find({"_id" : id}))
         if len(characters) > 0 :
@@ -57,9 +69,6 @@ Get house names with _id and their founders
 """
 @app.route("/houses", methods=["GET"])
 def get_houses() :
-    """
-    Get all houses with their details
-    """
     try :
         if mydb.houses.count_documents({}) > 0 :
             return dumps(mydb.houses.find({}, {"name":1, "founder":1}))
@@ -75,9 +84,6 @@ Returns: _id, name, mascot, head of house, house ghost, founder, school,
 """
 @app.route("/houses/<name>", methods=["GET"])
 def get_house_details(name) :
-    """
-    Get all houses with their details
-    """
     try :
         if mydb.houses.count_documents({}) > 0 :
             return dumps(mydb.houses.find({"name": name}))
@@ -91,9 +97,6 @@ Return all spells with details: _id, spell, type, effect
 """
 @app.route("/spells", methods=["GET"])
 def get_spells() :
-    """
-    Get all spells with their details
-    """
     try :
         if mydb.spells.count_documents({}) > 0 :
             return dumps(mydb.spells.find())
