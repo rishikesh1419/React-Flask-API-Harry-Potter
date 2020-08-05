@@ -1,12 +1,15 @@
 from config import mydb
 from flask import Flask
 from flask import jsonify, request
+from flask_cors import CORS
 from bson.json_util import dumps
 from pymongo import MongoClient
 from query_proc import parse_query
 from random import randint
 
 app = Flask(__name__)
+cors = CORS(app)
+
 """
 Get a random house
 Returns: a random house with its id, name, mascot, head of house, house ghost, founder, school,

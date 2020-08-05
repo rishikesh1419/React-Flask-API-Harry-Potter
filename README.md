@@ -12,7 +12,7 @@ Web App (React) and Custom API (Flask, MongoDB) </h1>
 
 <h2 id="repo">2. How To Run This Repository </h2>
 
-<h2 id="docs">3. API Documentation (Built using Flask, MongoDB: </h2>
+<h2 id="docs">3. API Documentation (Built using Flask, MongoDB): </h2>
 
 (All routes are GET, response format is json.)
 ### Get sorted into a random house
