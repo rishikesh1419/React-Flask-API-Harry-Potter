@@ -1,6 +1,6 @@
 import React from 'react'
 
-const CharacterItem = ({ character }) => {
+const CharacterItem = ({ character, showModal }) => {
     return (
         <div className="card">
             <div className="card-inner">
@@ -12,8 +12,7 @@ const CharacterItem = ({ character }) => {
                         <li><h3>Species: { character.species }</h3></li>
                         <li><h3>House: { character.house ? character.house : "Unknown" }</h3></li>
                     </ul>
-                    {/* <a href="#"><button>Details</button></a> */}
-                    <button>Details</button>
+                    <button className="details-button" onClick={ showModal.bind(this, character._id) }>Details</button>
                 </div>
             </div>
         </div>
