@@ -15,8 +15,6 @@ Get a random house
 Returns: a random house with its id, name, mascot, head of house, house ghost, founder, school,
          list of members (id), list of values, list of colors
 """
-
-
 @app.route("/sortinghat", methods=["GET"])
 def sorting_hat():
     houses = ["Gryffindor", "Ravenclaw", "Slytherin", "Hufflepuff"]
@@ -35,8 +33,6 @@ Characters request route to get all characters and to search for characters by n
 Valid uses: /characters (Get all characters), /characters?name=search_string (Search for a character)
 Returns: character's _id, name, house and species
 """
-
-
 @app.route("/characters", methods=["GET"])
 def get_chars():
     try:
@@ -68,8 +64,6 @@ Get a character using _id
 Returns: _id, name, role, wand, boggart, patronus, house, school, alias, animagus, blood status, species,
           if member of ministry of magic, order of phoenix, Dumbledore's army, death eaters (4 booleans)
 """
-
-
 @app.route("/characters/<id>", methods=["GET"])
 def get_char_de tails(id):
     try:
@@ -85,8 +79,6 @@ def get_char_de tails(id):
 """
 Get house names with _id and their founders
 """
-
-
 @app.route("/houses", methods=["GET"])
 def get_houses():
     try:
@@ -103,8 +95,6 @@ Get house details using name (Gryffindor, Slytherin, Ravenclaw, Hufflepuff)
 Returns: _id, name, mascot, head of house, house ghost, founder, school,
          list of members (_id), list of values, list of colors
 """
-
-
 @app.route("/houses/<name>", methods=["GET"])
 def get_house_details(name):
     try:
@@ -119,8 +109,6 @@ def get_house_details(name):
 """
 Return all spells with details: _id, spell, type, effect
 """
-
-
 @app.route("/spells", methods=["GET"])
 def get_spells():
     try:

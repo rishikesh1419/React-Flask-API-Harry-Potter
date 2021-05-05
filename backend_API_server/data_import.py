@@ -1,8 +1,7 @@
 import pymongo
 import json
+from config import mydb
 
-myclient = pymongo.MongoClient("mongodb://localhost:27017/")
-mydb = myclient["potterdb"]
 files = ["characters", "houses", "spells"]
 
 for f in files:
